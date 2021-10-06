@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: auth-server
+server:
+  port: 8090
+
+mysql:
+  driverName: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/oauth?autoReconnect=true&useSSL=false
+  user: root
+  password: amber1940
+#
+#mysql:
+#  driverName: org.h2.Driver
+#  url: jdbc:h2:~/data/oauth2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+#  user: sa
+#  password:
