@@ -1,20 +1,13 @@
-package com.namber.connect.auth.model;
+package com.namber.connect.auth.model.request;
 
 import lombok.Data;
-import org.springframework.security.oauth2.client.OAuth2ClientContext;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity(name ="oauth_client_details")
 @Data
-public class OAuthClientDetails{
-
-    @Id
+public class ClientDTO {
     private String clientId;
+    private String clientSecret;
 
     private String resourceIds;
-    private String clientSecret;
     private String scope;
     private String authorizedGrantTypes;
     private String webServerRedirectUri;

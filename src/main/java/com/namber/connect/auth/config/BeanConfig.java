@@ -1,5 +1,6 @@
 package com.namber.connect.auth.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -68,6 +69,11 @@ public class BeanConfig {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(dataScript);
         return populator;
+    }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
     }
 
 }

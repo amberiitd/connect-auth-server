@@ -2,7 +2,6 @@ package com.namber.connect.auth.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -16,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DefaultController {
     @Autowired
     private SecurityContext securityContext;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     @GetMapping("/welcome")
     public String welcome(Model model){
@@ -44,4 +40,6 @@ public class DefaultController {
     public String login(@RequestParam( required = false, value = "error") String error, @RequestParam(required = false, value = "logout") String logout){
         return "login";
     }
+
+
 }

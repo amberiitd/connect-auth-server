@@ -1,6 +1,7 @@
 package com.namber.connect.auth.config;
 
 import com.namber.connect.auth.service.UserDetailsServiceImpl;
+import com.namber.connect.auth.utils.constant.Authority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,18 +37,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.cors().and().csrf().disable();
+        http
+                .authorizeRequests()
+                .antMatchers("/user/login").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/v2/api-docs/**").permitAll()
+                .antMatchers("/info/**").permitAll()
+                .antMatchers("/register/user").permitAll()
+                .antMatchers("/register/**").hasAnyAuthority(Authority.ADMIN)
                 .anyRequest().authenticated()
             .and()
             .formLogin()
                 .loginPage("/login-page")
-                .defaultSuccessUrl("/welcome")
+                .defaultSuccessUrl("/swagger-ui.html")
 //                .failureUrl("/login-page?error")
                 .permitAll()
             .and()
             .logout()
                 .logoutUrl("/signout")
-//                .logoutSuccessUrl("/login-page?logout")
+                .logoutSuccessUrl("/login-page?logout")
                 .permitAll();
     }
 

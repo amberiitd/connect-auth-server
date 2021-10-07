@@ -36,3 +36,18 @@ INSERT INTO oauth_client_details
 VALUES
 	('client2', 'secret', 'foo,read,write',
 	'password,authorization_code,refresh_token,client_credentials', null, null, 36000, 36000, null, true);
+
+
+
+drop table if exists oauth_user_details;
+create table oauth_user_details (
+  user_id VARCHAR(255) PRIMARY KEY,
+  username VARCHAR(255),
+  password VARCHAR(255),
+  authorities VARCHAR(255)
+);
+
+INSERT INTO oauth_user_details
+	(user_id, username, password, authorities)
+VALUES
+	('user_1', 'namber', '$2a$12$7QUQ7ieZK9FjnZg5gliyVe5CitcRYpHJXsIehSrSNo4FrSCKJKNZC', 'ADMIN,USER');
