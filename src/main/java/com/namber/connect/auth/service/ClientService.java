@@ -30,7 +30,9 @@ public class ClientService {
         OAuthClientDetails clientDetails = clientDetailsRepository.findById(client.getClientId()).orElse(null);
 
         if (clientDetails != null) {
-            clientDetails.setAccessTokenValidity(client.getAccessTokenValidity());
+            if(client.getAccessTokenValidity() != null) {
+                clientDetails.setAccessTokenValidity(client.getAccessTokenValidity());
+            }
             clientDetails.setAdditionalInformation(
                     jointTokens(clientDetails.getAdditionalInformation(),
                             client.getAdditionalInformation())
@@ -42,7 +44,9 @@ public class ClientService {
                     jointTokens(clientDetails.getAuthorizedGrantTypes(),
                     client.getAuthorizedGrantTypes())
             );
-            clientDetails.setRefreshTokenValidity(client.getRefreshTokenValidity());
+            if(client.getAccessTokenValidity() != null) {
+                clientDetails.setRefreshTokenValidity(client.getRefreshTokenValidity());
+            }
             clientDetails.setResourceIds(
                     jointTokens(clientDetails.getResourceIds(),
                     client.getResourceIds())
@@ -51,7 +55,9 @@ public class ClientService {
                     jointTokens(clientDetails.getScope(),
                     client.getScope())
             );
-            clientDetails.setWebServerRedirectUri(client.getWebServerRedirectUri());
+            if(client.getAccessTokenValidity() != null) {
+                clientDetails.setWebServerRedirectUri(client.getWebServerRedirectUri());
+            }
 
             clientDetailsRepository.save(clientDetails);
         }

@@ -57,7 +57,7 @@ public class BeanConfig {
         return dataSource;
     }
 
-    @Bean
+//    @Bean
     public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
         final DataSourceInitializer initializer = new DataSourceInitializer();
         initializer.setDataSource(dataSource);

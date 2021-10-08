@@ -9,6 +9,10 @@ mysql:
   url: jdbc:mysql://localhost:3306/oauth?autoReconnect=true&useSSL=false
   user: root
   password: amber1940
+
+
+logging.level.org.springframework.web: DEBUG
+logging.level.io.springfox: DEBUG
 #
 #mysql:
 #  driverName: org.h2.Driver

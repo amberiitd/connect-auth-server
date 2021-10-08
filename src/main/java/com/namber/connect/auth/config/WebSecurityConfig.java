@@ -38,8 +38,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();
+//        cors().configurationSource(corsConfigurationSource())
         http
                 .authorizeRequests()
+//                .antMatchers(HttpMethod.OPTIONS, "/oauth/token").permitAll()
                 .antMatchers("/user/login").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/webjars/**").permitAll()
@@ -61,5 +63,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login-page?logout")
                 .permitAll();
     }
+
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        final CorsConfiguration configuration = new CorsConfiguration();
+//
+//        configuration.setAllowedOrigins(Arrays.asList("*"));  //set access from all domains
+//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "PUT", "DELETE"));
+//        configuration.setAllowedHeaders(Arrays.asList("Content-Type", "api_key", "Authorization"));
+//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//
+//        return source;
+//    }
 
 }
