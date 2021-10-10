@@ -25,17 +25,19 @@ public class AuthFilterService extends OncePerRequestFilter {
 //        UsernamePasswordAuthenticationToken authToken= new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 //        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 //        SecurityContextHolder.getContext().setAuthentication(authToken);
+
+        // nedd to set these two headers: Access-control-Allow-Origin, Access-Control-Allow-Headers always, might work withought with cookies: fatal
         response.setHeader("Access-control-Allow-Origin", "*"); //for cors policy issue with options method
 //        response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-//        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, x-auth-token, Content-Type, api_key, Authorization");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, x-auth-token, Content-Type, api_key, Authorization");
 //        response.setHeader("Access-Control-Max-Age", "3600");
 //        response.setHeader("Access-Control-Allow-Credentials", "true");
-//        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-//            response.setStatus(HttpServletResponse.SC_OK); // for cors policy issue with options method
-//        } else {
-//            filterChain.doFilter(request, response);
-//        }
-        filterChain.doFilter(request, response);
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK); // for cors policy issue with options method
+        } else {
+            filterChain.doFilter(request, response);
+        }
+//        filterChain.doFilter(request, response);
 
 
     }
